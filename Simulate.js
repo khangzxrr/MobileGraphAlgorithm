@@ -33,9 +33,9 @@ export default function Simulate({ navigation, route }) {
         var newX = Math.floor(Math.random() * (screenWidth - padding + 1));
         var newY = Math.floor(Math.random() * (screenHeight - padding + 1));
 
-        while (isTooCloseToAnotherNode(newX, newY) || newX <= padding || newY <= padding){
-            newX = Math.floor(Math.random() * (screenWidth - padding + 1));
-            newY = Math.floor(Math.random() * (screenHeight - padding + 1));
+        while (isTooCloseToAnotherNode(newX, newY) || newX <= padding || newY <= padding ){
+            newX = Math.floor(Math.random() * (screenWidth - padding * 2 ));
+            newY = Math.floor(Math.random() * (screenHeight - padding * 2));
         }
 
         nodes.push({ 
@@ -54,6 +54,12 @@ export default function Simulate({ navigation, route }) {
 
             canvasContext.arc(node.x, node.y, nodeSize, 0, 2 * Math.PI);
             canvasContext.fill();
+
+            canvasContext.font = "30px Arial";
+            canvasContext.fillStyle = "white";
+            canvasContext.textAlign = "center";
+
+            canvasContext.fillText(node.label, node.x, node.y + 10);
             
         });
     }
